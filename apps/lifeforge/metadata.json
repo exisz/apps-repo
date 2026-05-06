@@ -1,0 +1,10 @@
+{
+  "id": "au.com.rollersoft.lifeforge",
+  "name": "LifeForge",
+  "icon": "apps/lifeforge/icon.png",
+  "description": "Personal life management app — habits, goals, and daily tracking.",
+  "homepage": "https://lifeforge.rollersoft.com.au",
+  "source_repo": "https://github.com/exisz/lifeforge",
+  "license": "MIT",
+  "versions": []
+}

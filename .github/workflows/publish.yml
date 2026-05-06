@@ -1,0 +1,101 @@
+name: Publish App (Reusable)
+
+on:
+  workflow_call:
+    inputs:
+      app_id:
+        description: "App ID (e.g. au.com.rollersoft.lifeforge)"
+        required: true
+        type: string
+      app_dir:
+        description: "App directory name under apps/ (e.g. lifeforge)"
+        required: true
+        type: string
+      apk_url:
+        description: "URL to download the APK from"
+        required: true
+        type: string
+      version_code:
+        description: "Android versionCode (integer)"
+        required: true
+        type: string
+      version_name:
+        description: "Human-readable version (e.g. 1.0.9)"
+        required: true
+        type: string
+      changelog:
+        description: "Release changelog"
+        required: false
+        type: string
+        default: ""
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout apps-repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.APPS_REPO_PAT }}
+          ref: main
+
+      - name: Download APK
+        run: |
+          APK_FILENAME="${{ inputs.app_dir }}_${{ inputs.version_code }}.apk"
+          mkdir -p apps/${{ inputs.app_dir }}
+          curl -L "${{ inputs.apk_url }}" -o "apps/${{ inputs.app_dir }}/${APK_FILENAME}"
+          echo "APK_FILENAME=${APK_FILENAME}" >> $GITHUB_ENV
+
+      - name: Compute SHA256
+        run: |
+          SHA=$(sha256sum "apps/${{ inputs.app_dir }}/${{ env.APK_FILENAME }}" | cut -d' ' -f1)
+          SIZE=$(stat -c%s "apps/${{ inputs.app_dir }}/${{ env.APK_FILENAME }}")
+          echo "APK_SHA256=${SHA}" >> $GITHUB_ENV
+          echo "APK_SIZE=${SIZE}" >> $GITHUB_ENV
+
+      - name: Update metadata.json
+        run: |
+          python3 - <<'EOF'
+          import json, os, sys
+          from datetime import datetime, timezone
+
+          meta_path = f"apps/${{ inputs.app_dir }}/metadata.json"
+          with open(meta_path) as f:
+              meta = json.load(f)
+
+          new_version = {
+              "versionCode": int("${{ inputs.version_code }}"),
+              "versionName": "${{ inputs.version_name }}",
+              "apk": f"apps/${{ inputs.app_dir }}/${{ env.APK_FILENAME }}",
+              "size": int(os.environ["APK_SIZE"]),
+              "released_at": datetime.now(timezone.utc).isoformat(),
+              "sha256": os.environ["APK_SHA256"],
+              "changelog": "${{ inputs.changelog }}"
+          }
+
+          # Remove any existing entry with same versionCode
+          meta["versions"] = [v for v in meta.get("versions", []) if v["versionCode"] != new_version["versionCode"]]
+          meta["versions"].insert(0, new_version)
+          meta["versions"].sort(key=lambda v: v["versionCode"], reverse=True)
+
+          with open(meta_path, "w") as f:
+              json.dump(meta, f, indent=2, ensure_ascii=False)
+          print(f"Updated metadata for ${{ inputs.app_id }} v${{ inputs.version_name }}")
+          EOF
+        env:
+          APK_SIZE: ${{ env.APK_SIZE }}
+          APK_SHA256: ${{ env.APK_SHA256 }}
+
+      - name: Rebuild index.json
+        run: python3 scripts/rebuild-index.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "apps-bot"
+          git config user.email "apps-bot@rollersoft.com.au"
+          git add apps/ index.json
+          git commit -m "publish(${{ inputs.app_dir }}): v${{ inputs.version_name }} (versionCode ${{ inputs.version_code }})"
+          git push origin main
