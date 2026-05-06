@@ -99,3 +99,11 @@ jobs:
           git add apps/ index.json
           git commit -m "publish(${{ inputs.app_dir }}): v${{ inputs.version_name }} (versionCode ${{ inputs.version_code }})"
           git push origin main
+
+      - name: Trigger apps-store rebuild
+        run: |
+          curl -sS -X POST \
+            -H "Authorization: Bearer ${{ secrets.STORE_REBUILD_PAT }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/exisz/apps-store/actions/workflows/deploy.yml/dispatches \
+            -d '{"ref":"main"}'
