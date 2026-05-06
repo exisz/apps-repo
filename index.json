@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-05-06T22:17:28.107814+00:00",
+  "updated_at": "2026-05-06T22:37:22.586391+00:00",
   "apps": [
     {
       "id": "au.com.rollersoft.lifeforge",
@@ -10,7 +10,17 @@
       "homepage": "https://lifeforge.rollersoft.com.au",
       "source_repo": "https://github.com/exisz/lifeforge",
       "license": "MIT",
-      "versions": []
+      "versions": [
+        {
+          "versionCode": 12,
+          "versionName": "1.0.9",
+          "apk": "apps/lifeforge/lifeforge_12.apk",
+          "size": 3688805,
+          "released_at": "2026-05-03T14:41:02Z",
+          "sha256": "ae20ac26ccd8aea90ca716931e37eb63f0b8fe037e39beaec72582fe2c068626",
+          "changelog": "Initial release on apps-repo"
+        }
+      ]
     }
   ]
 }

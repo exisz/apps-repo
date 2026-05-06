@@ -1,77 +1,109 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rollersoft App Repository</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; }
-    header { padding: 2rem; border-bottom: 1px solid #1e293b; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0f1a; color: #e2e8f0; min-height: 100vh; }
+    header { padding: 2rem 2rem 1.5rem; border-bottom: 1px solid #1e293b; display: flex; align-items: center; gap: 1rem; }
+    .logo { font-size: 2rem; }
     header h1 { font-size: 1.5rem; font-weight: 700; color: #f8fafc; }
-    header p { margin-top: 0.25rem; color: #94a3b8; font-size: 0.875rem; }
-    main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
-    #status { color: #64748b; font-size: 0.875rem; margin-bottom: 1.5rem; }
-    .app-grid { display: grid; gap: 1rem; }
-    .app-card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start; }
-    .app-icon { width: 64px; height: 64px; border-radius: 14px; background: #334155; flex-shrink: 0; object-fit: cover; }
-    .app-info { flex: 1; }
-    .app-name { font-size: 1.1rem; font-weight: 600; color: #f1f5f9; }
-    .app-desc { color: #94a3b8; font-size: 0.875rem; margin-top: 0.25rem; }
-    .app-meta { margin-top: 0.5rem; font-size: 0.75rem; color: #64748b; }
-    .app-actions { margin-top: 0.75rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
-    .btn { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.4rem 0.9rem; border-radius: 8px; font-size: 0.8rem; font-weight: 500; text-decoration: none; cursor: pointer; border: none; }
-    .btn-primary { background: #3b82f6; color: #fff; }
-    .btn-secondary { background: #334155; color: #cbd5e1; }
-    .btn:hover { opacity: 0.85; }
-    footer { text-align: center; color: #475569; font-size: 0.75rem; padding: 2rem; }
+    header p { margin-top: 0.2rem; color: #64748b; font-size: 0.85rem; }
+    main { max-width: 860px; margin: 2rem auto; padding: 0 1.25rem; }
+    #status { color: #64748b; font-size: 0.8rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; display: inline-block; }
+    .app-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .app-card {
+      background: #111827;
+      border: 1px solid #1e293b;
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+      transition: border-color 0.15s;
+    }
+    .app-card:hover { border-color: #334155; }
+    .app-icon { width: 68px; height: 68px; border-radius: 16px; background: #1e293b; flex-shrink: 0; object-fit: cover; }
+    .app-icon-placeholder { width: 68px; height: 68px; border-radius: 16px; background: #1e293b; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+    .app-info { flex: 1; min-width: 0; }
+    .app-header { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+    .app-name { font-size: 1.05rem; font-weight: 600; color: #f1f5f9; }
+    .app-version { font-size: 0.72rem; font-weight: 500; padding: 0.2rem 0.5rem; background: #1e3a5f; color: #60a5fa; border-radius: 20px; }
+    .app-desc { color: #94a3b8; font-size: 0.85rem; margin-top: 0.3rem; }
+    .app-actions { margin-top: 0.9rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+    .btn { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.45rem 1rem; border-radius: 8px; font-size: 0.8rem; font-weight: 500; text-decoration: none; cursor: pointer; border: none; transition: opacity 0.15s; }
+    .btn-primary { background: #2563eb; color: #fff; }
+    .btn-secondary { background: #1e293b; color: #94a3b8; }
+    .btn-source { background: transparent; color: #4b5563; border: 1px solid #1e293b; }
+    .btn:hover { opacity: 0.82; }
+    .no-apps { color: #4b5563; text-align: center; padding: 3rem 0; }
+    footer { text-align: center; color: #374151; font-size: 0.75rem; padding: 3rem 1rem 2rem; border-top: 1px solid #111827; margin-top: 3rem; }
+    footer a { color: #4b5563; text-decoration: underline; }
   </style>
 </head>
 <body>
   <header>
-    <h1>🏗️ Rollersoft App Repository</h1>
-    <p>Internal app distribution — powered by <a href="https://github.com/exisz/apps-repo" style="color:#60a5fa">exisz/apps-repo</a></p>
+    <span class="logo">📦</span>
+    <div>
+      <h1>Rollersoft App Repo</h1>
+      <p>Self-hosted Android app distribution for the Rollersoft 全家桶</p>
+    </div>
   </header>
   <main>
-    <p id="status">Loading apps…</p>
-    <div class="app-grid" id="app-grid"></div>
+    <div id="status"><span class="dot"></span> Loading…</div>
+    <div class="app-list" id="apps"></div>
   </main>
   <footer>
-    <a href="index.json" style="color:#475569">index.json</a> · repo.rollersoft.com.au
+    <p>Want to add your app? → <a href="https://github.com/exisz/apps-repo#onboarding" target="_blank">See the onboarding guide</a></p>
+    <p style="margin-top:0.5rem">Powered by <a href="https://github.com/exisz/apps-repo" target="_blank">exisz/apps-repo</a></p>
   </footer>
-
   <script>
+    const REPO_BASE = 'https://repo.rollersoft.com.au';
     async function load() {
-      const status = document.getElementById('status');
-      const grid = document.getElementById('app-grid');
+      const statusEl = document.getElementById('status');
+      const appsEl = document.getElementById('apps');
       try {
-        const res = await fetch('index.json');
+        const res = await fetch(`${REPO_BASE}/index.json?t=${Date.now()}`);
         const data = await res.json();
         const apps = data.apps || [];
-        status.textContent = `${apps.length} app(s) · updated ${new Date(data.updated_at).toLocaleDateString()}`;
-        grid.innerHTML = apps.map(app => {
+        const ts = new Date(data.updated_at).toLocaleString('en-AU', {dateStyle:'medium',timeStyle:'short'});
+        statusEl.innerHTML = `<span class="dot"></span> ${apps.length} app${apps.length !== 1 ? 's' : ''} · Updated ${ts}`;
+        if (apps.length === 0) {
+          appsEl.innerHTML = '<p class="no-apps">No apps published yet.</p>';
+          return;
+        }
+        appsEl.innerHTML = apps.map(app => {
           const latest = (app.versions || [])[0];
-          const apkHref = latest ? latest.apk : null;
+          const ver = latest ? `v${latest.versionName}` : 'No release yet';
+          const hasAPK = latest && latest.apk;
+          const iconSrc = app.icon ? `${REPO_BASE}/${app.icon}` : null;
+          const iconHtml = iconSrc
+            ? `<img class="app-icon" src="${iconSrc}" alt="${app.name} icon" onerror="this.outerHTML='<div class=app-icon-placeholder>📱</div>'">`
+            : `<div class="app-icon-placeholder">📱</div>`;
           return `
             <div class="app-card">
-              <img class="app-icon" src="${app.icon}" onerror="this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'64\\' height=\\'64\\'><rect width=\\'64\\' height=\\'64\\' rx=\\'14\\' fill=\\'%23334155\\'/><text x=\\'50%\\' y=\\'55%\\' dominant-baseline=\\'middle\\' text-anchor=\\'middle\\' font-size=\\'28\\' fill=\\'%2394a3b8\\'>📦</text></svg>'" />
+              ${iconHtml}
               <div class="app-info">
-                <div class="app-name">${app.name}</div>
-                <div class="app-desc">${app.description}</div>
-                <div class="app-meta">
-                  ${latest ? `v${latest.versionName} (${latest.versionCode})` : 'No releases yet'}
-                  · <a href="${app.source_repo}" style="color:#60a5fa" target="_blank">source</a>
-                  ${app.homepage ? `· <a href="${app.homepage}" style="color:#60a5fa" target="_blank">website</a>` : ''}
+                <div class="app-header">
+                  <span class="app-name">${app.name}</span>
+                  <span class="app-version">${ver}</span>
                 </div>
+                <div class="app-desc">${app.description || ''}</div>
                 <div class="app-actions">
-                  ${apkHref ? `<a class="btn btn-primary" href="${apkHref}" download>⬇ Download APK</a>` : '<span style="color:#64748b;font-size:0.8rem">No APK yet</span>'}
-                  <a class="btn btn-secondary" href="${app.source_repo}" target="_blank">GitHub</a>
+                  ${hasAPK ? `<a class="btn btn-primary" href="${REPO_BASE}/${latest.apk}" download>⬇ Download APK</a>` : ''}
+                  ${app.homepage ? `<a class="btn btn-secondary" href="${app.homepage}" target="_blank">🌐 Website</a>` : ''}
+                  ${app.source_repo ? `<a class="btn btn-source" href="${app.source_repo}" target="_blank">⌥ Source</a>` : ''}
                 </div>
               </div>
             </div>`;
         }).join('');
       } catch (e) {
-        status.textContent = 'Failed to load index.json: ' + e.message;
+        statusEl.innerHTML = '⚠ Failed to load index';
+        console.error(e);
       }
     }
     load();

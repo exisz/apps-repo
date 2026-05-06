@@ -2,9 +2,19 @@
   "id": "au.com.rollersoft.lifeforge",
   "name": "LifeForge",
   "icon": "apps/lifeforge/icon.png",
-  "description": "Personal life management app — habits, goals, and daily tracking.",
+  "description": "Personal life management app \u2014 habits, goals, and daily tracking.",
   "homepage": "https://lifeforge.rollersoft.com.au",
   "source_repo": "https://github.com/exisz/lifeforge",
   "license": "MIT",
-  "versions": []
+  "versions": [
+    {
+      "versionCode": 12,
+      "versionName": "1.0.9",
+      "apk": "apps/lifeforge/lifeforge_12.apk",
+      "size": 3688805,
+      "released_at": "2026-05-03T14:41:02Z",
+      "sha256": "ae20ac26ccd8aea90ca716931e37eb63f0b8fe037e39beaec72582fe2c068626",
+      "changelog": "Initial release on apps-repo"
+    }
+  ]
 }
