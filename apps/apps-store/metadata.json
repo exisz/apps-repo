@@ -1,0 +1,10 @@
+{
+  "id": "au.com.rollersoft.apps",
+  "name": "Rollersoft Apps",
+  "icon": "apps/apps-store/icon.png",
+  "description": "Self-hosted Android app store for the Rollersoft 全家桶 — discover and install all our apps in one place.",
+  "homepage": "https://apps.rollersoft.com.au",
+  "source_repo": "https://github.com/exisz/apps-store",
+  "license": "MIT",
+  "versions": []
+}
