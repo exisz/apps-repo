@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-05-07T00:02:48.220499+00:00",
+  "updated_at": "2026-05-07T00:11:35.887096+00:00",
   "apps": [
     {
       "id": "au.com.rollersoft.apps",
@@ -11,6 +11,15 @@
       "source_repo": "https://github.com/exisz/apps-store",
       "license": "MIT",
       "versions": [
+        {
+          "versionCode": 2,
+          "versionName": "0.1.1",
+          "apk": "apps/apps-store/apps-store_2.apk",
+          "size": 3176521,
+          "released_at": "2026-05-07T00:11:35.848643+00:00",
+          "sha256": "890f98981a6c21ab62d48be24eb078f7545e7430b2bb4582e29320e9dfe70634",
+          "changelog": "test explicit checkout fix"
+        },
         {
           "versionCode": 1,
           "versionName": "0.1.1",
