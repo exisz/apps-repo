@@ -39,6 +39,7 @@ jobs:
       - name: Checkout apps-repo
         uses: actions/checkout@v4
         with:
+          repository: exisz/apps-repo
           token: ${{ secrets.APPS_REPO_PAT }}
           ref: main
 
