@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-05-07T00:11:35.887096+00:00",
+  "updated_at": "2026-05-10T10:11:00.786080+00:00",
   "apps": [
     {
       "id": "au.com.rollersoft.apps",
@@ -30,6 +30,16 @@
           "changelog": "Initial publish: apps-store self-registers on apps-repo"
         }
       ]
+    },
+    {
+      "id": "au.com.rollersoft.crossroads",
+      "name": "Crossroads",
+      "icon": "apps/crossroads/icon.png",
+      "description": "Interactive text adventure and self-discovery story world at the Crossroads.",
+      "homepage": "https://crossroads.rollersoft.com.au",
+      "source_repo": "https://github.com/exisz/crossroads",
+      "license": "MIT",
+      "versions": []
     },
     {
       "id": "au.com.rollersoft.lifeforge",

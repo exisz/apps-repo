@@ -1,0 +1,10 @@
+{
+  "id": "au.com.rollersoft.crossroads",
+  "name": "Crossroads",
+  "icon": "apps/crossroads/icon.png",
+  "description": "Interactive text adventure and self-discovery story world at the Crossroads.",
+  "homepage": "https://crossroads.rollersoft.com.au",
+  "source_repo": "https://github.com/exisz/crossroads",
+  "license": "MIT",
+  "versions": []
+}
