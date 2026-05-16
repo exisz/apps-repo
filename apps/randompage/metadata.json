@@ -1,0 +1,10 @@
+{
+  "id": "au.com.rollersoft.randompage",
+  "name": "RandomPage",
+  "icon": "apps/randompage/icon.png",
+  "description": "Personalized literary passage discovery — daily curated book fragments and a reading inbox.",
+  "homepage": "https://app.randompage.rollersoft.com.au",
+  "source_repo": "https://github.com/exisz/randompage",
+  "license": "MIT",
+  "versions": []
+}
