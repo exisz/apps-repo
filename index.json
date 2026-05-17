@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-05-17T01:38:52.197207+00:00",
+  "updated_at": "2026-05-17T02:00:55.493209+00:00",
   "apps": [
     {
       "id": "au.com.rollersoft.apps",
@@ -79,7 +79,17 @@
       "homepage": "https://app.randompage.rollersoft.com.au",
       "source_repo": "https://github.com/exisz/randompage",
       "license": "MIT",
-      "versions": []
+      "versions": [
+        {
+          "versionCode": 13,
+          "versionName": "1.0.1",
+          "apk": "apps/randompage/randompage_13.apk",
+          "size": 909764,
+          "released_at": "2026-05-17T02:00:55.470450+00:00",
+          "sha256": "f31a1a87221eb2f00b1c4d8967c3934644329befb09bd535f4236e2194a7db05",
+          "changelog": "RandomPage Android TWA release v1.0.1"
+        }
+      ]
     }
   ]
 }
