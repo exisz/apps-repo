@@ -8,6 +8,15 @@
   "license": "MIT",
   "versions": [
     {
+      "versionCode": 14,
+      "versionName": "1.0.2",
+      "apk": "apps/randompage/randompage_14.apk",
+      "size": 909764,
+      "released_at": "2026-05-17T03:16:05.279187+00:00",
+      "sha256": "65f873f910702a2fc85aca803fc3582529f03615380949b64aeda8c2dd91da47",
+      "changelog": "RandomPage Android TWA release v1.0.2"
+    },
+    {
       "versionCode": 13,
       "versionName": "1.0.1",
       "apk": "apps/randompage/randompage_13.apk",
