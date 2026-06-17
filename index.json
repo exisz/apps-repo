@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-06-09T22:15:48.141238+00:00",
+  "updated_at": "2026-06-17T10:07:16.126186+00:00",
   "apps": [
     {
       "id": "au.com.rollersoft.apps",
@@ -40,6 +40,15 @@
       "source_repo": "https://github.com/exisz/crossroads",
       "license": "MIT",
       "versions": [
+        {
+          "versionCode": 16,
+          "versionName": "1.0.9",
+          "apk": "apps/crossroads/crossroads_16.apk",
+          "size": 1085892,
+          "released_at": "2026-06-17T10:07:16.097095+00:00",
+          "sha256": "b8b5a007f7ba8432d757e1346d6c8813ea4ea0d94a93949fc6c6141aa6e4a2c9",
+          "changelog": "Crossroads Android TWA release v1.0.9"
+        },
         {
           "versionCode": 15,
           "versionName": "1.0.8",
