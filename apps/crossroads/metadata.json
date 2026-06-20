@@ -8,6 +8,15 @@
   "license": "MIT",
   "versions": [
     {
+      "versionCode": 17,
+      "versionName": "1.0.10",
+      "apk": "apps/crossroads/crossroads_17.apk",
+      "size": 1085892,
+      "released_at": "2026-06-20T22:09:25.367442+00:00",
+      "sha256": "91a16835646c5bbb2788b3b0ab11bc84ec6e4b2e362ad995ba0908a08e7d41db",
+      "changelog": "Crossroads Android TWA release v1.0.10"
+    },
+    {
       "versionCode": 16,
       "versionName": "1.0.9",
       "apk": "apps/crossroads/crossroads_16.apk",
